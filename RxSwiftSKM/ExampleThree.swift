@@ -13,7 +13,6 @@ import RxCocoa
 
 class ExampleThree {
     
-    
     enum CustomError: Error {
         case someError
     }
@@ -23,29 +22,10 @@ class ExampleThree {
 //                one()
 //                two()
 //                three()
-        four()
+//        four()
     }
+    
     func one() {
-        
-        let observable = Observable.of(1, 2, 3).debug()
-        
-        observable.subscribe(onNext: { element in
-            print(element)
-        })
-        
-    }
-    
-    func two() {
-        
-        let observable = Observable.of(1, 2, 3).debug()
-        
-        observable.first().subscribe(onSuccess: { element in
-            print(element)
-        })
-        
-    }
-    
-    func three() {
    
         let publishSubject = PublishSubject<String>()
         
@@ -79,13 +59,10 @@ class ExampleThree {
         publishSubject.onNext("After error to the new guy")
     }
     
-//    In the code above, the event .on(.Next(“Hello”)) is lost since no subscribers are listening at that time.
-    
     //Questions:
     //0. How to reset subject?
     
-    
-    func four() {
+    func two() {
         let behaviorSubject = BehaviorSubject(value: 10)
         
         behaviorSubject.onNext(15)
@@ -107,12 +84,10 @@ class ExampleThree {
         }
         
         behaviorSubject.onNext(30)
-        
-//        It is important to note that when an error or completed event has occurred with the subject, future observers who subscribe are passed the error or completed event. The last next event is not passed to the new observer.
 
     }
     
-    func five() {
+    func three() {
         
         let replaySubject = ReplaySubject<Int>.create(bufferSize: 1)
         replaySubject.onNext(22)
@@ -139,8 +114,7 @@ class ExampleThree {
         }
         
         replaySubject.onNext(55)
-        
-//        It is important to note that when an error or completed event has occurred with the subject, future observers who subscribe are passed the n buffer along with the error or completed event. This is different from other subjects seen above. And this is the reason that, with a buffer of 1 — ReplaySubject is not the same as a BehaviorSubject.
+
 
     }
 }

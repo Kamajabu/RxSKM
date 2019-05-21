@@ -14,13 +14,11 @@ import RxCocoa
 
 class ExampleOne {
     
-    
     func start() {
 //        one()
 //        two()
 //        three()
     }
-    
     
     func one() {
         
@@ -96,7 +94,6 @@ class ExampleOne {
         
     }
 }
-    
     
     //Questions:
     //0. Would (two separate lines)

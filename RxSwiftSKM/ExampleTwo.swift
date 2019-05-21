@@ -7,36 +7,43 @@
 //
 
 import Foundation
-
 import RxSwift
 import RxCocoa
 
-
 class ExampleTwo {
-
-    //let disposeBag = DisposeBag()
+    
+    //    let disposeBag = DisposeBag()
+    
+    func start() {
+        //                one()
+        //                two()
+//        three()
+    }
+    
+    //    deinit {
+    //        print("Bye!")
+    //    }
     
     func one() {
         
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1")!
         let requestObservable = URLSession.shared
             .rx.data(request: URLRequest(url: url))
+            .debug("URLRequest")
         
         requestObservable
-            .debug()
+            //            .debug("firstSubscribe")
             .subscribe(onNext: {
                 print($0)
             })
         
         requestObservable
-            .debug()
+            //            .debug("secondSubscribe")
             .subscribe(onNext: {
                 print($0)
             })
         
     }
-    
-    //    If you take a look at console logs, you will see two distinct HTTP responses. Observable performed work twice even if it wasn’t our intention.
     
     //Questions:
     //0. Will this subscribtion be disposed?
@@ -45,53 +52,72 @@ class ExampleTwo {
     
     func two() {
         
-        
-        
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1")!
         let requestObservable = URLSession.shared
             .rx.data(request: URLRequest(url: url))
+            .debug("URLRequest")
             .share()
         //same as
         //.publish().refcount()
         
         requestObservable
-            .debug()
+            //            .debug("firstSubscribe")
             .subscribe(onNext: {
                 print($0)
             })
         
         //sleep(3)
+        
         print("--Next subscribe--")
         requestObservable
-            .debug()
+            //            .debug("secondSubscribe")
             .subscribe(onNext: {
                 print($0)
             })
         
     }
     
-    
     //Questions:
-    //0. What would adding sleep between them change?
+    //0. What would adding sleep between them (line 68) change?
     
-    
+    func three() {
+        
+        let counter = Observable<Int>.interval(1, scheduler: SerialDispatchQueueScheduler(qos: .background))
+            .debug("Conter")
+            .share(replay: 2)
+        
+        print("Started ----")
+        
+        let subscription1 = counter
+            .subscribe(onNext: { n in
+                print("First \(n)")
+            })
+        
+        Thread.sleep(forTimeInterval: 3.5)
+        print("Second subscription ----")
+
+        let subscription2 = counter
+            .subscribe(onNext: { n in
+                print("Second \(n)")
+            })
+        
+        Thread.sleep(forTimeInterval: 4)
+        print("First dispose ----")
+
+        subscription1.dispose()
+        
+        Thread.sleep(forTimeInterval: 4)
+
+        print("Second dispose ----")
+        subscription2.dispose()
+        
+        print("Ended ----")
+        
+    }
     
 }
 
 
-//        let observable = Observable<Void>.create { observer -> Disposable in
-//            // run request
-//            print("Live")
-//
-//            observer.onCompleted()
-//            return Disposables.create {
-//                // request.cancel()
-//                print("disposed ☠️")
-//            }
-//        }
-//
-//        let disposable = observable.subscribe()
-//        observable.subscribe()
 
 
 
@@ -132,9 +158,6 @@ class ExampleTwo {
 
 
 
-
-// 1. Yes, request would/could be canceled before having opportunity to be finished
-// 2. Nope
 
 
 

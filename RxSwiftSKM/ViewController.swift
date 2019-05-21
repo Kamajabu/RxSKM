@@ -14,13 +14,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let exampleOne = ExampleOne()
+        let exampleTwo = ExampleTwo()
         let exampleThree = ExampleThree()
         let exampleFour = ExampleFour()
         let exampleFive = ExampleFive()
         let exampleSix = ExampleSix()
 
-        
-        exampleSix.start()
+        exampleOne.start()
+        exampleTwo.start()
+        exampleThree.start()
 //        exampleFour.start()
 //        exampleFive.start()
         //ExampleOne().First()
