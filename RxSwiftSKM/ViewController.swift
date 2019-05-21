@@ -12,9 +12,33 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let exampleOne = ExampleOne()
+        let exampleThree = ExampleThree()
+        let exampleFour = ExampleFour()
+        let exampleFive = ExampleFive()
+        let exampleSix = ExampleSix()
+
+        
+        exampleSix.start()
+//        exampleFour.start()
+//        exampleFive.start()
+        //ExampleOne().First()
+        //ExampleOne().Second()
+//        ExampleOne().third()
+//        exampleOne.four()
+//        ExampleOne().five()
+
+
+
     }
 
 
+}
+
+func delay(_ seconds: Double, completion: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        completion()
+    }
 }
 
