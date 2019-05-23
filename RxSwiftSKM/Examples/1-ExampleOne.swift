@@ -101,5 +101,38 @@ class ExampleOne {
     // myObservable.refCount()
     // also work?
 
+//1 What the differnce between following examples?
+
+//lazy var isEnabled: ConnectableObservable<Bool> = {
+//    return Observable
+//        .combineLatest(ongoingSecondaryCalculaction, primaryTrajectoryChanged, selectedTrajectoryChanged) {
+//            onGoing, primary, isAirportDiversion -> Bool in
+//
+//            guard isAirportDiversion == false else {
+//                return false
+//            }
+//
+//            return !onGoing && primary
+//        }
+//        .debug("isEnabled").publish()
+//}()
+
+
+//var isEnabled: ConnectableObservable<Bool> {
+//    return Observable
+//        .combineLatest(ongoingSecondaryCalculaction, primaryTrajectoryChanged, selectedTrajectoryChanged) {
+//            onGoing, primary, isAirportDiversion -> Bool in
+//
+//            guard isAirportDiversion == false else {
+//                return false
+//            }
+//
+//            return !onGoing && primary
+//        }
+//        .debug("isEnabled").publish()
+//}
+
+
+
 
     
