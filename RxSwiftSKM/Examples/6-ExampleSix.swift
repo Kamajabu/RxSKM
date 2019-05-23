@@ -14,7 +14,7 @@ import RxCocoa
 class ExampleSix: NSObject {
     
     func start() {
-        one()
+//        one()
 //        two()
     }
     
@@ -22,9 +22,7 @@ class ExampleSix: NSObject {
         var updatedValue: Int = 0
         
         var observedValue: Observable<Int> {
-            return Observable.deferred {
-                Observable.of(updatedValue)
-            }
+            return Observable.of(updatedValue)
         }
         
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
@@ -71,25 +69,5 @@ class ExampleSix: NSObject {
         }
         
     }
-    
-//    func one() {
-//
-//        let observable = Observable.of(1, 2, 3).debug()
-//
-//        observable.subscribe(onNext: { element in
-//            print(element)
-//        })
-//
-//    }
-//
-//    func two() {
-//
-//        let observable = Observable.of(1, 2, 3).debug()
-//
-//        observable.first().subscribe(onSuccess: { element in
-//            print(element)
-//        })
-//
-//    }
     
 }

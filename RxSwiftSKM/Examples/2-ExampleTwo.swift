@@ -79,6 +79,8 @@ class ExampleTwo {
     
     //Questions:
     //0. What would adding sleep between them (line 68) change?
+    //0 Bonus. What would adding replay 1 to that sleep change?
+
     
     func three() {
         

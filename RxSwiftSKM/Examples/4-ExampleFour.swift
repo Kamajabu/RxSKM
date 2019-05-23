@@ -11,64 +11,90 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+//http://rx-marin.com/post/observeon-vs-subscribeon/
+
 class ExampleFour {
     
-    
-    enum CustomError: Error {
-        case someError
-    }
-    
-    
     func start() {
-        two()
-        //                one()
-        //                two()
-        //                three()
+//        one()
+//                two()
+        
 //        four()
     }
+    
     func one() {
         
-        func sampleCreate() -> Observable<String> {
-            return Observable.create { observer in
-                observer.on(.next("Hello"))
-                observer.on(.next("World"))
-                print("sleeping")
-                Thread.sleep(forTimeInterval: 2.0)
-                print("slept")
-                observer.onCompleted()
-                
-                return Disposables.create()
+        //    If you place this code in a viewDidLoad you will block the main thread because of the usage of sleep in the subscription code.
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
+            print("Hello o/")
+        }
+        
+        Observable<Int>.create { observer in
+            observer.onNext(1)
+            sleep(3)
+            observer.onNext(2)
+            return Disposables.create()
             }
-        }
-        
-        sampleCreate().subscribe { event in
-            print(event)
-        }
-        
-//        As you see, the sequence is lazily evaluated and the next events are processed before we sleep on the rest of the instructions.
-        
+            .subscribe(onNext: { el in
+                print("is main thread: \(Thread.isMainThread)")
+            })
     }
+    
+
     
     func two() {
         
-        func sampleSubject() -> ReplaySubject<String> {
-            let replaySubject = ReplaySubject<String>.create(bufferSize: 2)
-            
-            replaySubject.on(.next("Hello"))
-            replaySubject.on(.next("World"))
-            print("sleeping")
-            Thread.sleep(forTimeInterval: 2.0)
-            print("slept")
-            replaySubject.onCompleted()
-            
-            return replaySubject
+        //This time you will switch threads while subscribing:
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
+            print("Hello o/")
         }
         
-        sampleSubject().subscribe { event in
-            print(event)
-        }
-        
-//        The subject implements a blocking kind of sequence generation, and the events are processed together and not lazily evaluated.
-        
+        Observable<Int>.create { observer in
+            observer.onNext(1)
+            sleep(3)
+            observer.onNext(2)
+            return Disposables.create()
+            }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { el in
+                print("is main thread: \(Thread.isMainThread)")
+            })
     }
+    
+    func three() {
+        
+        Observable<Int>.create { observer in
+            observer.onNext(1)
+            sleep(1)
+            observer.onNext(2)
+            return Disposables.create()
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { el in
+                print("is main thread: \(Thread.isMainThread)")
+            })
+        
+        //You can place observeOn and subscribeOn anywhere in your operator chain - the order doesn’t really matter.
+    }
+    
+    func four() {
+        let switchOnOff = UISwitch(frame:CGRect(x: 150, y: 150, width: 0, height: 0))
+        
+        Observable<Int>.create { observer in
+            observer.onNext(1)
+            sleep(1)
+            observer.onNext(2)
+            return Disposables.create()
+            }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { el in
+                switchOnOff.isOn = true
+            })
+    }
+    
+    func five() {
+        //fix for above?
+    }
+    
 }

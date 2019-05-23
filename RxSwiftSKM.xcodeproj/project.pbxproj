@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0132CC8CCF1403BB8FF40317 /* Pods_RxSwiftSKMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B407D4061DBA7C2994B74A3 /* Pods_RxSwiftSKMTests.framework */; };
+		2C287B9F22974F1D009FC93F /* 9-ExampleNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C287B9E22974F1D009FC93F /* 9-ExampleNine.swift */; };
 		2CB65E632290748700E7635C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB65E622290748700E7635C /* AppDelegate.swift */; };
 		2CB65E652290748700E7635C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB65E642290748700E7635C /* ViewController.swift */; };
 		2CB65E6A2290748900E7635C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB65E692290748900E7635C /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		17BD06AC82C0CBC96897DD7F /* Pods-RxSwiftSKMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftSKMTests.debug.xcconfig"; path = "Target Support Files/Pods-RxSwiftSKMTests/Pods-RxSwiftSKMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B407D4061DBA7C2994B74A3 /* Pods_RxSwiftSKMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftSKMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C287B9E22974F1D009FC93F /* 9-ExampleNine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "9-ExampleNine.swift"; sourceTree = "<group>"; };
 		2CB65E5F2290748700E7635C /* RxSwiftSKM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftSKM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB65E622290748700E7635C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CB65E642290748700E7635C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				2CBAF1A32295C425006861A5 /* 6-ExampleSix.swift */,
 				2CBAF1AC2295C4A4006861A5 /* 7-ExampleSeven.swift */,
 				2CBAF1AE2295DAD4006861A5 /* 8-ExampleEight.swift */,
+				2C287B9E22974F1D009FC93F /* 9-ExampleNine.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				2CBAF1A72295C425006861A5 /* 2-ExampleTwo.swift in Sources */,
 				2CBAF1A62295C425006861A5 /* 1-ExampleOne.swift in Sources */,
 				2CBAF1AF2295DAD4006861A5 /* 8-ExampleEight.swift in Sources */,
+				2C287B9F22974F1D009FC93F /* 9-ExampleNine.swift in Sources */,
 				2CBAF1AD2295C4A4006861A5 /* 7-ExampleSeven.swift in Sources */,
 				2CB65E632290748700E7635C /* AppDelegate.swift in Sources */,
 			);
