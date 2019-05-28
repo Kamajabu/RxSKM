@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         exampleThree.start()
         exampleFour.start()
         exampleFive.start()
+        exampleSix.start()
+        exampleSeven.start()
         exampleEight.start()
 //        exampleFour.start()
 //        exampleFive.start()

@@ -17,14 +17,13 @@ class ExampleFour {
     
     func start() {
 //        one()
-//                two()
-        
+//        two()
+//        three()
 //        four()
     }
     
     func one() {
         
-        //    If you place this code in a viewDidLoad you will block the main thread because of the usage of sleep in the subscription code.
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
             print("Hello o/")
         }
@@ -44,7 +43,6 @@ class ExampleFour {
     
     func two() {
         
-        //This time you will switch threads while subscribing:
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
             print("Hello o/")
         }
@@ -74,8 +72,6 @@ class ExampleFour {
             .subscribe(onNext: { el in
                 print("is main thread: \(Thread.isMainThread)")
             })
-        
-        //You can place observeOn and subscribeOn anywhere in your operator chain - the order doesn’t really matter.
     }
     
     func four() {

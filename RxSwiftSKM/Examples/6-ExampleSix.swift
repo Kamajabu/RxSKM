@@ -16,6 +16,7 @@ class ExampleSix: NSObject {
     func start() {
 //        one()
 //        two()
+//        three()
     }
     
     func one() {
@@ -67,6 +68,72 @@ class ExampleSix: NSObject {
             .subscribe { (event) in
                 print(event)
         }
+        
+    }
+    
+    func three() {
+        
+        let subject = PublishSubject<Int>()
+        
+        let observableOf = Observable.of(1,2,3)
+        
+        let combined = Observable.combineLatest(subject, observableOf).debug("combineLatest").share()
+        
+        combined.debug("normal").subscribe { (event) in
+            print("combine: \(event)")
+        }
+        
+        combined.debug("withLatestFrom").withLatestFrom(subject).subscribe { (event) in
+            print("withLatestFrom: \(event)")
+        }
+     
+        subject.onNext(111)
+        subject.onNext(222)
+        subject.onNext(333)
+
+
+//        2019-05-27 20:51:08.400: withLatestFrom -> subscribed
+//        2019-05-27 20:51:08.402: combineLatest -> subscribed
+//        2019-05-27 20:51:08.404: normal -> subscribed
+//        2019-05-27 20:51:08.406: combineLatest -> Event next((111, 3))
+//        2019-05-27 20:51:08.406: withLatestFrom -> Event next((111, 3))
+//        withLatestFrom: next(111)
+//        2019-05-27 20:51:08.406: normal -> Event next((111, 3))
+//        combine: next((111, 3))
+//        2019-05-27 20:51:08.406: combineLatest -> Event next((222, 3))
+//        2019-05-27 20:51:08.406: withLatestFrom -> Event next((222, 3))
+//        withLatestFrom: next(222)
+//        2019-05-27 20:51:08.406: normal -> Event next((222, 3))
+//        combine: next((222, 3))
+//        2019-05-27 20:51:08.406: combineLatest -> Event next((333, 3))
+//        2019-05-27 20:51:08.407: withLatestFrom -> Event next((333, 3))
+//        withLatestFrom: next(333)
+//        2019-05-27 20:51:08.407: normal -> Event next((333, 3))
+//        combine: next((333, 3))
+        
+        
+        //---
+        
+//
+//        2019-05-27 20:52:29.220: normal -> subscribed
+//        2019-05-27 20:52:29.223: combineLatest -> subscribed
+//        2019-05-27 20:52:29.226: withLatestFrom -> subscribed
+//        2019-05-27 20:52:29.227: combineLatest -> Event next((111, 3))
+//        2019-05-27 20:52:29.227: normal -> Event next((111, 3))
+//        combine: next((111, 3))
+//        2019-05-27 20:52:29.227: withLatestFrom -> Event next((111, 3))
+//        2019-05-27 20:52:29.227: combineLatest -> Event next((222, 3))
+//        2019-05-27 20:52:29.227: normal -> Event next((222, 3))
+//        combine: next((222, 3))
+//        2019-05-27 20:52:29.227: withLatestFrom -> Event next((222, 3))
+//        withLatestFrom: next(111)
+//        2019-05-27 20:52:29.227: combineLatest -> Event next((333, 3))
+//        2019-05-27 20:52:29.228: normal -> Event next((333, 3))
+//        combine: next((333, 3))
+//        2019-05-27 20:52:29.228: withLatestFrom -> Event next((333, 3))
+//        withLatestFrom: next(222)
+
+
         
     }
     

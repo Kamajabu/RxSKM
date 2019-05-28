@@ -15,7 +15,8 @@ class ExampleSeven {
     
     func start() {
         //        one()
-        //        two()
+//                two()
+        //        four()
     }
     
     func one() {
@@ -59,7 +60,7 @@ class ExampleSeven {
     }
     
     func three() {
-        let S1 = Observable.of(1,2)
+        let S1: Observable<Int> = Observable.empty()
         let S2 = Observable.of(3,4,5)
         let S3 = Observable.of(6,7)
         
@@ -77,7 +78,5 @@ class ExampleSeven {
                 print("multi \(event)")
         }
     }
-
-
-        
+    
 }

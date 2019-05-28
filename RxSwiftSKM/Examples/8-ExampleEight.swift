@@ -22,11 +22,10 @@ class ExampleEight {
     
     
     func start() {
-//                        one()
-//                        two()
+//        one()
+//        two()
 //        three()
-        
-        four()
+//        four()
     }
     
     func one() {
@@ -49,14 +48,6 @@ class ExampleEight {
             print(event)
         }
         
-//        next(Hello)
-//        next(World)
-//        sleeping
-//        slept
-//        completed
-        
-        //        As you see, the sequence is lazily evaluated and the next events are processed before we sleep on the rest of the instructions.
-        
     }
     
     func two() {
@@ -77,16 +68,7 @@ class ExampleEight {
         
         sampleSubject().subscribe { event in
             print(event)
-        }
-//
-//        sleeping
-//        slept
-//        next(Hello)
-//        next(World)
-//        completed
-        
-        //        The subject implements a blocking kind of sequence generation, and the events are processed together and not lazily evaluated.
-        
+        }        
     }
     
     

@@ -19,9 +19,9 @@ class ExampleThree {
     
     
     func start() {
-//                one()
-//                two()
-//                three()
+//        one()
+//        two()
+//        three()
 //        four()
     }
     
@@ -114,7 +114,6 @@ class ExampleThree {
         }
         
         replaySubject.onNext(55)
-
-
     }
+    
 }

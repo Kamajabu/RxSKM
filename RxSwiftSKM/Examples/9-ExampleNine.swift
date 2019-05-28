@@ -21,7 +21,7 @@ class ExampleNine {
     
     
     func start() {
-//one()
+//        one()
     }
         func one() {
     
@@ -32,15 +32,13 @@ class ExampleNine {
                         .materialize()
             }
     
-    
-            result
+            result.elements()
                 .scan(0) { accumulator, _ in
                     return accumulator + 1
                 }.map { "\($0)" }
                 .subscribe({ event in
                     print(event)
                 })
-    
     
         }
     
